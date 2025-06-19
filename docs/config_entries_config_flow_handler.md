@@ -481,7 +481,13 @@ class LocationSubentryFlowHandler(ConfigSubentryFlow):
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
     ) -> SubentryFlowResult:
-        """User flow to add a new location."""
+        """User flow to add a new location.
+
+        Must be named with the format async_step_{step_id} in order to be called correctly
+        The function is called to start the flow and then when the flow is submitted
+        As such, use `if user_input is not None:` to handle user input and the opposite case to show the form
+        with self.async_show_form().
+        """
         ...
 
     async def async_step_reconfigure(
